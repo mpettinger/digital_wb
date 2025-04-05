@@ -1,30 +1,7 @@
-import RPi.GPIO as GPIO
+from scale import scale
 import time
-
-
-GPIO.setmode(GPIO.BOARD)
-#Assign a pin
-clk = 3#orange
-data = 5 #yellow
-
-GPIO.setup(clk,GPIO.OUT)
-GPIO.setup(data,GPIO.IN)
-
-GPIO.output(clk,GPIO.LOW)
-my_data = GPIO.input(data)
-while my_data == 1:
-    my_data = GPIO.input(data)
-
-print(f"data is ready{type(my_data)}")
-
-
-for i in range(24):
-    GPIO.output(clk,GPIO.HIGH)
-    GPIO.output(clk,GPIO.LOW)
-    my_data = my_data + GPIO.input(data)*(2**(24-i))
-
-
-print(f"DATA: {my_data}")
-GPIO.output(clk,GPIO.LOW)
-#Cleanup
-GPIO.cleanup([clk,data])
+s1 = scale(3,5)
+while True:
+    print(s1.get_avg_raw(n=100))
+    time.sleep(.500)
+s1.clean_up()
