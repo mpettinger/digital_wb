@@ -40,18 +40,9 @@ class scale:
         samples_np = np.array(samples)
         return (samples_np.mean(),samples_np.std())
     
-    def calibrate(self):
-        input("Make sure scale is empty and press enter.")
-        low_weight = 0
-        reading_low = self.get_avg_raw()[0]
-        high_weight = float(input("Load scale and enter known weight in Kgs: "))
-        reading_high = self.get_avg_raw()[0]
-        
-        slope = (low_weight - high_weight)/(reading_low-reading_high)
-        intercept = low_weight - slope*reading_low
-        
-        self.slope = slope
-        self.intercept = intercept
+   
+   
+   
     
     def get_weight(self):
         reading = self.get_avg_raw()

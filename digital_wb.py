@@ -1,6 +1,6 @@
 from scale import scale
 import time
-s1 = scale(3.1,5)
+s1 = scale(3,5)
 s1.calibrate()
 continue_ = "GO"
 while continue_ != "Q":
